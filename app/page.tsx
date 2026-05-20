@@ -31,13 +31,11 @@ function PuzzleGrid({ rowDefinitions, columnDefinitions, puzzleState, onMove }: 
     newPuzzleState[row][column] = CellState.Solid;
     onMove(newPuzzleState);
   }
-  return <div>
+  return <div className="grid" style={{ gridTemplateColumns: `repeat(${columnDefinitions.length}, 1fr)` }}>
     {rowDefinitions.map((rowDefinition, rowIndex) =>
-      <div className="puzzle-grid-column" key={rowIndex}>
-        {columnDefinitions.map((columnDefinition, columnIndex) =>
-          <Cell state={puzzleState[rowIndex][columnIndex]} onSquareClick={() => handleClick(rowIndex, columnIndex)} key={rowIndex} />
-        )}
-      </div>
+      columnDefinitions.map((columnDefinition, columnIndex) =>
+        <Cell state={puzzleState[rowIndex][columnIndex]} onSquareClick={() => handleClick(rowIndex, columnIndex)} key={`${rowIndex}-${columnIndex}`} />
+      )
     )}
   </div>
 }
