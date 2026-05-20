@@ -32,16 +32,15 @@ function PuzzleGrid({ rowDefinitions, columnDefinitions, puzzleState, onMove }: 
     onMove(newPuzzleState);
   }
   return <div>
-    {columnDefinitions.map((columnDefinition, columnIndex) =>
-      <div className="puzzle-grid-column" key={columnIndex}>
-        {rowDefinitions.map((rowDefinition, rowIndex) =>
+    {rowDefinitions.map((rowDefinition, rowIndex) =>
+      <div className="puzzle-grid-column" key={rowIndex}>
+        {columnDefinitions.map((columnDefinition, columnIndex) =>
           <Cell state={puzzleState[rowIndex][columnIndex]} onSquareClick={() => handleClick(rowIndex, columnIndex)} key={rowIndex} />
         )}
       </div>
     )}
   </div>
 }
-
 
 
 export default function Puzzle() {
